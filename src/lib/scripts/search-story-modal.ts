@@ -1,16 +1,17 @@
 // @ts-nocheck
 
-export async function call() {
+export async function getAllUsersWhoViewedStory() {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
   const tabId = tabs[0].id;
 
   const scriptResult = await chrome.scripting.executeScript<string[]>({
     target: { tabId },
-    func: getAllUsersWhoViewedStory,
+    func: getAllUsersWhoViewedStoryImpl,
   });
   return scriptResult[0].result as string[];
 }
-export async function getAllUsersWhoViewedStory() {
+
+async function getAllUsersWhoViewedStoryImpl() {
   try {
     const wrapper = document.querySelector('div[style*="height: 356px"]');
     if (!wrapper) {

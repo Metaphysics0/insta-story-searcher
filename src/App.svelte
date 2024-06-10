@@ -1,53 +1,14 @@
 <script lang="ts">
-  import instaStorySearch from './assets/insta-story-search.png';
-  import Form from './lib/Form.svelte';
-  import { storyViewersStore } from './lib/stores/story-viewers.store';
+  import Form from './lib/ui/Form.svelte';
+  import Logo from './lib/ui/Logo.svelte';
+  import StoryViewers from './lib/ui/StoryViewers.svelte';
 </script>
 
-<main>
-  <div class="logo-wrap">
-    <img src={instaStorySearch} class="logo" alt="Logo" />
-  </div>
-  <h1>Insta Story Searcher</h1>
-  <p>You simp</p>
+<main class="flex flex-col items-center">
+  <Logo />
+  <h1 class="font-bold mb-2">Insta Story Searcher</h1>
+  <p class="mb-3 font-light opacity-70">You simp.</p>
   <Form />
 
-  <div class="story-viewers">
-    {#if $storyViewersStore.length}
-      <strong>Viewers: </strong>
-    {/if}
-    {#each $storyViewersStore as storyViewer, idx}
-      <span>{idx + 1}. {JSON.stringify(storyViewer)}</span>
-    {/each}
-  </div>
+  <StoryViewers />
 </main>
-
-<style>
-  .logo-wrap {
-    margin-bottom: 1px;
-  }
-  h1 {
-    margin: 10px 0px;
-  }
-  p {
-    opacity: 0.5;
-    font-style: italic;
-  }
-  .logo {
-    height: 6em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-
-  .story-viewers {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    max-height: 300px;
-    overflow: scroll;
-    /* max-width: ; */
-  }
-</style>
