@@ -1,5 +1,8 @@
 # Instagram Story Searcher
 
-An app for simps to search for someone that has viewed their story
+A chrome extension that allows you to search for someone that has viewed your instagram story.
 
-![preview](https://i.imgur.com/ePwq4wX.png)
+Currently in review by Google
+(June 10, 2024)
+
+![preview](https://i.imgur.com/1KVJ6A6.png)
