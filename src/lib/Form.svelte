@@ -1,12 +1,25 @@
 <script lang="ts">
-  function search() {
-    console.log('searching');
+  import { getAllUsersWhoViewedStory } from './scripts/search-story-modal';
+  import { storyViewersStore } from './stores/story-viewers.store';
+
+  let searchInput = '';
+  async function search() {
+    const result = await getAllUsersWhoViewedStory();
+
+    if (result) {
+      storyViewersStore.set(result);
+    }
   }
 </script>
 
 <div class="form-wrap">
   <label class="input-wrap">
-    <input type="text" name="query" placeholder="Search a viewer" id="" />
+    <input
+      type="text"
+      name="query"
+      placeholder="Search a viewer"
+      value={searchInput}
+    />
   </label>
   <button on:click={search}> Search 🚀 </button>
 </div>

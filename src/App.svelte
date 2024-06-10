@@ -1,6 +1,7 @@
 <script lang="ts">
   import instaStorySearch from './assets/insta-story-search.png';
   import Form from './lib/Form.svelte';
+  import { storyViewersStore } from './lib/stores/story-viewers.store';
 </script>
 
 <main>
@@ -10,6 +11,15 @@
   <h1>Insta Story Searcher</h1>
   <p>You simp</p>
   <Form />
+
+  <div class="story-viewers">
+    {#if $storyViewersStore.length}
+      <strong>Viewers: </strong>
+    {/if}
+    {#each $storyViewersStore as storyViewer, idx}
+      <span>{idx + 1}. {storyViewer}</span>
+    {/each}
+  </div>
 </main>
 
 <style>
@@ -30,5 +40,14 @@
   }
   .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
+  }
+
+  .story-viewers {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow: scroll;
+    /* max-width: ; */
   }
 </style>
