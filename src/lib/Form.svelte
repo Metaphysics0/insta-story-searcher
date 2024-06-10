@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { getAllUsersWhoViewedStory } from './scripts/search-story-modal';
+  import {
+    call,
+    getAllUsersWhoViewedStory,
+  } from './scripts/search-story-modal';
   import { storyViewersStore } from './stores/story-viewers.store';
 
   let searchInput = '';
   async function search() {
-    const result = await getAllUsersWhoViewedStory();
+    const result = await call();
 
     if (result) {
       storyViewersStore.set(result);

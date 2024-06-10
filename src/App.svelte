@@ -17,7 +17,7 @@
       <strong>Viewers: </strong>
     {/if}
     {#each $storyViewersStore as storyViewer, idx}
-      <span>{idx + 1}. {storyViewer}</span>
+      <span>{idx + 1}. {JSON.stringify(storyViewer)}</span>
     {/each}
   </div>
 </main>

@@ -1,11 +1,26 @@
 // @ts-nocheck
 
+export async function call() {
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tabId = tabs[0].id;
+
+  const scriptResult = await chrome.scripting.executeScript<string[]>({
+    target: { tabId },
+    func: getAllUsersWhoViewedStory,
+  });
+  return scriptResult[0].result as string[];
+}
 export async function getAllUsersWhoViewedStory() {
   try {
     const wrapper = document.querySelector('div[style*="height: 356px"]');
     if (!wrapper) {
       throw new Error(ERRORS.cannotFindStoryViewerModal);
     }
+
+    const removeDuplicates = (arr) =>
+      arr.filter((item, index) => arr.indexOf(item) === index);
+
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
     const result = [];
 
@@ -32,14 +47,6 @@ export async function getAllUsersWhoViewedStory() {
 
     console.error('Error searching', error);
   }
-}
-
-function removeDuplicates(arr) {
-  return arr.filter((item, index) => arr.indexOf(item) === index);
-}
-
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
 }
 
 const ERRORS = {
