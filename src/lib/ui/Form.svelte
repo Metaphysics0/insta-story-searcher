@@ -2,8 +2,6 @@
   import { getAllUsersWhoViewedStory } from '../scripts/search-story-modal';
   import { storyViewersStore } from '../stores/story-viewers.store';
   import { cn } from '../utils/css';
-  import Fuse from 'fuse.js';
-  import { getFilteredStoryViewers } from '../utils/search';
   import { searchInputStore } from '../stores/search-input.store';
 
   let searchInput = '';
